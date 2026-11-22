@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moonwell Duel</title>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div id="stage">
+  <!-- Title screen -->
+  <section id="screen-title" class="screen">
+    <div class="title-glow"></div>
+    <h1 class="game-title">MOONWELL<span>DUEL</span></h1>
+    <p class="tagline">A lantern duel beneath the frozen grove</p>
+    <div class="suit-orbit">
+      <span class="orb bloom">✿</span><span class="orb frost">❄</span>
+      <span class="orb ember">✹</span><span class="orb shade">✦</span>
+    </div>
+    <button id="btn-begin" class="big-btn">Begin the Duel</button>
+    <button id="btn-how" class="ghost-btn">How to Play</button>
+    <div id="howto" class="howto hidden">
+      <h2>The Duel</h2>
+      <p>You and the Thorn Warden duel with lantern cards. Each turn you gain one more lantern-light
+      (mana, up to 6), refill it, and draw a card.</p>
+      <p><b>Play cards</b> by clicking them or pressing 1–5. Their light pays the cost shown in the
+      blue gem. <b>End Turn</b> (Space or the button) when you are done.</p>
+      <p><b>Read the Warden:</b> her next move is always shown above her. Ward against her strikes,
+      strike through her wards, and guard your own life.</p>
+      <ul>
+        <li><b class="bloom">Bloom ✿</b> heals and grows</li>
+        <li><b class="frost">Frost ❄</b> chills the Warden's power</li>
+        <li><b class="ember">Ember ✹</b> strikes; embers chain for more</li>
+        <li><b class="shade">Shade ✦</b> meddles with her light</li>
+      </ul>
+      <p>Bring her from 24 life to 0 before she does the same to you.</p>
+      <button id="btn-close-how" class="ghost-btn">Close</button>
+    </div>
+    <p class="made-note">Built by an AI agent for make.fun</p>
+  </section>
+
+  <!-- Duel table -->
+  <section id="screen-table" class="screen hidden">
+    <header id="topbar">
+      <div id="warden-plate" class="plate">
+        <span class="portrait warden">✹</span>
+        <div class="plate-body">
+          <span class="plate-name">Thorn Warden</span>
+          <div class="life-track"><div id="warden-life" class="life-fill enemy"></div></div>
+          <span id="warden-life-text" class="life-text">24 / 24</span>
+        </div>
+        <div id="warden-shield" class="shield-badge hidden">🛡 <span id="warden-shield-n">0</span></div>
+      </div>
+      <div id="intent-box" class="intent">
+        <span class="intent-label">Her next move</span>
+        <span id="intent-text">…</span>
+      </div>
+    </header>
+
+    <div id="battlefield">
+      <div id="chill-note" class="chill hidden">❄ Chilled: her strikes are weaker</div>
+      <div id="toll-note" class="chill hidden">✦ Toll: she loses light next turn</div>
+      <div id="log-line"></div>
+    </div>
+
+    <footer id="player-zone">
+      <div id="zone-row">
+      <div id="player-plate" class="plate">
+        <span class="portrait player">✿</span>
+        <div class="plate-body">
+          <span class="plate-name">You</span>
+          <div class="life-track"><div id="player-life" class="life-fill"></div></div>
+          <span id="player-life-text" class="life-text">24 / 24</span>
+        </div>
+        <div id="player-shield" class="shield-badge hidden">🛡 <span id="player-shield-n">0</span></div>
+      </div>
+      <div id="mana-box" class="mana">
+        <span class="mana-label">Light</span>
+        <div id="mana-pips"></div>
+        <span id="mana-text">0/0</span>
+      </div>
+      <div id="deck-count">Deck <span id="deck-n">0</span></div>
+      <div id="actions">
+        <button id="btn-end" class="big-btn small">End Turn <kbd>Space</kbd></button>
+      </div>
+      </div>
+      <div id="hand"></div>
+    </footer>
+    <div id="floaters"></div>
+  </section>
+
+  <!-- End screens -->
+  <section id="screen-victory" class="screen endscreen hidden">
+    <div class="banner win">VICTORY</div>
+    <p class="end-line">The Thorn Warden's lantern gutters out. The moonwell is yours.</p>
+    <p id="win-stats" class="end-stats"></p>
+    <button id="btn-again" class="big-btn">Duel Again</button>
+  </section>
+  <section id="screen-defeat" class="screen endscreen hidden">
+    <div class="banner lose">DEFEAT</div>
+    <p class="end-line">Thorns close over the well. The grove keeps its dark.</p>
+    <p id="lose-stats" class="end-stats"></p>
+    <button id="btn-retry" class="big-btn">Try Again</button>
+  </section>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
