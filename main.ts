@@ -7,7 +7,7 @@
 // Play locally: `node serve.ts`, then open http://localhost:8080 in desktop Chrome.
 // Build the hand-in: `mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts`
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-game.ts';
@@ -35,3 +35,7 @@ writeFileSync(
     game_path_max_bytes: 1000,
   }),
 );
+
+// Say what was handed in, so a local run confirms itself at a glance.
+const dossierBytes = statSync(join(outputDir, 'dossier.json')).size;
+console.log(`handed in: game/, ${existsSync(join(outputDir, 'screenshots')) ? '4 screenshots, ' : ''}dossier.json (${dossierBytes} bytes) -> ${outputDir}`);
